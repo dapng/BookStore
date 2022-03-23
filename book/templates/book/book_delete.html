@@ -1,0 +1,21 @@
+{% extends 'book/layout.html' %}
+
+{% block content %}
+
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+        <div class="features">
+          <h1 class="fw-light">Удаление книги</h1><br>
+          <form method="post">
+            {% csrf_token %}
+            <h3 class="fw-light">Удалить: {{ book.title }}?</h3><br>
+            <button class="btn btn-dark" type="submit">Удалить книгу</button>
+            <a href="{% url 'home' %}" class="btn btn-dark">Назад</a>
+          </form>
+        </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock %}

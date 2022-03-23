@@ -1,0 +1,22 @@
+{% extends 'book/layout.html' %}
+
+{% block content %}
+
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+        <div class="features">
+          <h1 class="fw-light">Продажа книги: {{ sbook.title }}</h1><br>
+          <form method="post">
+            {% csrf_token %}
+            Количество: {{ form.quantity_sale }}<br>
+            Выставлено на продажу: {{ form.sale }}<br><br>
+            <button class="btn btn-dark" type="submit">Продать книгу</button>
+            <a href="{% url 'sell-home' %}" class="btn btn-dark">Назад</a>
+          </form>
+        </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock %}

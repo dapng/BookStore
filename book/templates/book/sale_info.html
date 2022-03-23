@@ -1,0 +1,40 @@
+{% extends 'book/layout.html' %}
+
+{% block content %}
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Продажа книг:</h1>
+          <a href="{% url 'sell-home' %}" class="btn btn-warning">В раздел продаж</a>
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <div class="btn-toolbar mb-2 mb-md-0">
+            </div>
+          </div>
+          {% if books %}
+            {% for bk in books %}
+                <div class="alert alert-light">
+                    <h3 class="fw-light">{{ bk.title }}</h3>
+                    <p class="fw-light">Автор книги: {{ bk.author }}</p>
+                    <p class="fw-light">Стоимость книги: {{ bk.price }} руб.</p>
+                    <p class="fw-light">Остаток книг в магазине: {{ bk.quantity }}</p>
+                    {% if bk.sale %}
+                        <p class="fw-light">Статус продаж: в продаже</p>
+                    {% else %}
+                        <p class="fw-light">Статус продаж: не продаётся</p>
+                    {% endif %}
+                    <p class="fw-light">Количество проданных:
+                      {% if bk.quantity_sale %} {{ bk.quantity_sale }} шт {% else %} 0 шт</h4>{% endif %}
+                </div>
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <div class="btn-toolbar mb-2 mb-md-0">
+                    </div>
+                  </div>
+            {% endfor %}
+        {% else %}
+            <p>У вас нет записей!</p>
+        {% endif %}
+        </div>
+      </div>
+    </section>
+
+{% endblock %}

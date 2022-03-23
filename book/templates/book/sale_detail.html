@@ -1,0 +1,37 @@
+{% extends 'book/layout.html' %}
+
+{% block content %}
+
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Подробнее о книге: {{ book.title }}</h1>
+                <div class="alert alert-light">
+                    {% if book.image %}
+                        <img src="{{ book.image }}" style="height: 400px;"><br><br>
+                    {% else %}
+                        <p class="fw-light">Обложка отсутствует</p>
+                    {% endif %}
+                    <h4 class="fw-light">Описание книги: {{ book.description }}</h4>
+                    <h4 class="fw-light">Автор книги: {{ book.author }}</h4>
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                      <div class="btn-toolbar mb-2 mb-md-0">
+                      </div>
+                    </div>
+                    <h2 class="fw-light">Информация магазина: </h2>
+                    <h4 class="fw-light">Стоимость книги: {{ book.price }} руб.</h4>
+                    <h4 class="fw-light">Остаток книг: {{ book.quantity }}</h4>
+                    <h4 class="fw-light">Количество проданных:
+                      {% if book.quantity_sale %} {{ book.quantity_sale }} шт {% else %} 0 шт</h4>{% endif %}
+                    {% if book.sale %}
+                    <h4 class="fw-light">Статус продаж: выставлено на продажу</h4>{% else %}
+                    <h4 class="fw-light">Статус продаж: не продаётся</h4>{% endif %}
+                    <a href="{% url 'sale-update' book.id %}" class="btn btn-dark">Изменить</a>
+                    <a href="{% url 'books-delete' book.id %}" class="btn btn-dark">Удалить</a>
+                    <a href="{% url 'sell-home' %}" class="btn btn-dark">Назад</a>
+                </div>
+        </div>
+      </div>
+    </section>
+
+{% endblock %}
